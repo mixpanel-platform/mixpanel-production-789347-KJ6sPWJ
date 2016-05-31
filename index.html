@@ -36,7 +36,6 @@
       var Params1 = {
             from: moment().subtract('30', 'days'),
             to: moment(),
-            limit: '10',
             type: 'unique',
             unit: 'day',
             where: 'user["$country_code"] == "FI" or user["$country_code"] == "SE" or user["$country_code"] == "DK" or user["$country_code"] == "NO" or user["$country_code"] == "IT" or user["$country_code"] == "ES" or user["$country_code"] == "DE" or user["$country_code"] == "AT" and defined (user["$country_code"])',
@@ -46,7 +45,6 @@
       var Params2 = {
             from: moment().subtract('30', 'days'),
             to: moment(),
-            limit: '10',
             type: 'unique',
             unit: 'day',
             where: 'user["$country_code"] == "FI" or user["$country_code"] == "SE" or user["$country_code"] == "DK" or user["$country_code"] == "NO" or user["$country_code"] == "IT" or user["$country_code"] == "DE" or user["$country_code"] == "AT" or user["$country_code"] == "ES") and defined (user["$country_code"]) and defined (user["$city"]',
@@ -80,7 +78,7 @@
         
         //Accepted Invitation by Program
         
-        MP.api.segment('Accepted Invitation', 'Program Public ID', Params3).done(function(results) {
+        MP.api.segment('Accepted Invitation', 'Program Public Id', Params3).done(function(results) {
             
             AcceptedInvitationbyProgram.MPChart('setData', results);
         });
