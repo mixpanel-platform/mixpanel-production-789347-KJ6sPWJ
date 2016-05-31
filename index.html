@@ -64,7 +64,7 @@
         
         //Started Parking by Country (Unique)
         
-        MP.api.segment('Started Parking', user["$country_code"], Params1).done(function(results) {
+        MP.api.segment('Started Parking', 'mp_country_code'], Params1).done(function(results) {
             
             StartedParkingbyCountry.MPChart('setData', results)
         });
