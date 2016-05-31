@@ -7,9 +7,84 @@
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
   </head>
   <body class="mixpanel-platform-body">
-    <h1>Hello, World!</h1>
+    
+    <div class="mixpanel-platform-section">
+      <h1>Unique Started Parking by Country</h1>
+      <div style="clear: both;"></div>
+      <div id="BYCOUNTRY" class="report"></div>
+      <h1>Unique Started Parking by City</h1>
+      <div style="clear: both;"></div>
+      <div id="BYCITY" class="report"></div>
+      <h1>Accepted Invitation by Program</h1>
+      <div style="clear: both;"></div>
+      <div id="BYPROGRAM" class="report"></div>
+     </div>
+    <style>
+    h1 {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+    .report {
+     margin: 15px 0; 
+    }
+    </style>
     <script>
-      // Run queries and display results here
+      var StartedParkingbyCountry  = $('BYCOUNTRY').MPChart({chartType: 'bar'});
+      var StartedParkingbyCity  = $('#BYCITY').MPChart({chartType: 'bar'});
+      var AcceptedInvitationbyProgram  = $('#BYPROGRAM').MPChart({chartType: 'line'});
+     
+      var Params1 = {
+            from: moment().subtract('30', 'days'),
+            to: moment(),
+            limit: '10',
+            type: 'unique',
+            unit: 'day',
+            where: 'user["$country_code"] == "FI" or user["$country_code"] == "SE" or user["$country_code"] == "DK" or user["$country_code"] == "NO" or user["$country_code"] == "IT" or user["$country_code"] == "ES" or user["$country_code"] == "DE" or user["$country_code"] == "AT"',
+      };
+      
+      var Params2 = {
+            from: moment().subtract('30', 'days'),
+            to: moment(),
+            limit: '10',
+            type: 'unique',
+            unit: 'day',
+            where: 'user["$country_code"] == "FI" or user["$country_code"] == "SE" or user["$country_code"] == "DK" or user["$country_code"] == "NO" or user["$country_code"] == "IT" or user["$country_code"] == "DE" or user["$country_code"] == "AT" or user["$country_code"] == "ES"',
+      };
+      
+      var Params3 = {
+            from: moment().subtract('30', 'days'),
+            to: moment(),
+            type: 'general',
+            unit: 'day',
+            where: 'properties["Program Public Id"']',
+      };
+      
+      runQuery();
+       function runQuery() {
+        
+        //Started Parking by Country (Unique)
+        
+        MP.api.segment('Started Parking', Params1).done(function(results) {
+            
+            StartedParkingbyCountry.MPChart('setData', results)
+        });
+        
+         //Started Parking by City (Unique)
+        
+        MP.api.segment('Started Parking', Params2).done(function(results) {
+            
+            StartedParkingbyCity.MPChart('setData', results);
+        });
+        
+        //Accepted Invitation by Program
+        
+        MP.api.segment('Accepted Invitation', Params3).done(function(results) {
+            
+            .MPChart('setData', results);
+        });
+        
+        }
+
     </script>
   </body>
 </html>
