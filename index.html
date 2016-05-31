@@ -38,7 +38,7 @@
             to: moment(),
             type: 'unique',
             unit: 'day',
-            where: 'user["$country_code"] == "FI" or user["$country_code"] == "SE" or user["$country_code"] == "DK" or user["$country_code"] == "NO" or user["$country_code"] == "IT" or user["$country_code"] == "ES" or user["$country_code"] == "DE" or user["$country_code"] == "AT" and defined (user["$country_code"])',
+            //where: 'user["$country_code"] == "FI" or user["$country_code"] == "SE" or user["$country_code"] == "DK" or user["$country_code"] == "NO" or user["$country_code"] == "IT" or user["$country_code"] == "ES" or user["$country_code"] == "DE" or user["$country_code"] == "AT" and defined (user["$country_code"])',
             on: 'user["$country_code"]',
       };
       
@@ -47,7 +47,7 @@
             to: moment(),
             type: 'unique',
             unit: 'day',
-            where: 'user["$country_code"] == "FI" or user["$country_code"] == "SE" or user["$country_code"] == "DK" or user["$country_code"] == "NO" or user["$country_code"] == "IT" or user["$country_code"] == "DE" or user["$country_code"] == "AT" or user["$country_code"] == "ES") and defined (user["$country_code"]) and defined (user["$city"])',
+            //where: 'user["$country_code"] == "FI" or user["$country_code"] == "SE" or user["$country_code"] == "DK" or user["$country_code"] == "NO" or user["$country_code"] == "IT" or user["$country_code"] == "DE" or user["$country_code"] == "AT" or user["$country_code"] == "ES") and defined (user["$country_code"]) and defined (user["$city"])',
             on: 'user["$city"]',
       };
       
