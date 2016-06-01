@@ -12,9 +12,9 @@
       <h1>Unique Started Parking by Country (past 30 days)</h1>
       <div style="clear: both;"></div>
       <div id="BYCOUNTRY" class="report"></div>
-      <h1>Unique Started Parking by City (past 30 days)</h1>
+      <h1>Started Parking (past 30 days)</h1>
       <div style="clear: both;"></div>
-      <div id="BYCITY" class="report"></div>
+      <div id="STARTEDPARKING" class="report"></div>
       <h1>Accepted Invitation by Program (past 30 days)</h1>
       <div style="clear: both;"></div>
       <div id="BYPROGRAM" class="report"></div>
@@ -30,7 +30,7 @@
     </style>
     <script>
       var StartedParkingbyCountry  = $('#BYCOUNTRY').MPChart({chartType: 'bar'});
-      var StartedParkingbyCity  = $('#BYCITY').MPChart({chartType: 'bar'});
+      var StartedParking  = $('#STARTEDPARKING').MPChart({chartType: 'line'});
       var AcceptedInvitationbyProgram  = $('#BYPROGRAM').MPChart({chartType: 'line'});
      
       var Params1 = {
@@ -45,11 +45,9 @@
       var Params2 = {
             from: moment().subtract('30', 'days'),
             to: moment(),
-            type: 'unique',
-            limit: '10',
+            type: 'general',
             unit: 'day',
-            where: 'defined (user["$city"]) and user["$country_code"] == "FI" or user["$country_code"] == "SE" or user["$country_code"] == "DK" or user["$country_code"] == "NO" or user["$country_code"] == "IT" or user["$country_code"] == "ES" or user["$country_code"] == "DE" or user["$country_code"] == "AT"',
-            on: 'user["$city"]',
+            where: 'user["Business"] == true or user["Private"] == true',
       };
       
       var Params3 = {
@@ -74,7 +72,7 @@
         
         MP.api.segment('Started Parking', Params2).done(function(results) {
             
-            StartedParkingbyCity.MPChart('setData', results);
+            StartedParking.MPChart('setData', results);
         });
         
         //Accepted Invitation by Program
